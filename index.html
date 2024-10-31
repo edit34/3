@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محول WebM إلى MP4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        
+        .btn:hover {
+            background-color: #45a049;
+        }
+        
+        #fileInput {
+            display: none;
+        }
+        
+        .file-label {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2196F3;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        .file-label:hover {
+            background-color: #1976D2;
+        }
+        
+        #selectedFile {
+            margin: 10px 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>محول WebM إلى MP4</h1>
+        <p>اختر ملف WebM لتحويله إلى صيغة MP4</p>
+        
+        <label class="file-label">
+            اختر الملف
+            <input type="file" id="fileInput" accept=".webm">
+        </label>
+        
+        <div id="selectedFile"></div>
+        
+        <button class="btn" onclick="convertVideo()" id="convertBtn" disabled>
+            تحويل إلى MP4
+        </button>
+        
+        <div id="status"></div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const selectedFile = document.getElementById('selectedFile');
+        const convertBtn = document.getElementById('convertBtn');
+        const status = document.getElementById('status');
+        
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                selectedFile.textContent = `الملف المختار: ${file.name}`;
+                convertBtn.disabled = false;
+            } else {
+                selectedFile.textContent = '';
+                convertBtn.disabled = true;
+            }
+        });
+        
+        function convertVideo() {
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('الرجاء اختيار ملف أولاً');
+                return;
+            }
+            
+            status.textContent = 'جاري التحويل...';
+            
+            // في الواقع، نحتاج إلى خدمة خلفية لتحويل الفيديو
+            // هذا مجرد محاكاة للعملية
+            setTimeout(() => {
+                status.textContent = 'تم التحويل بنجاح! جاري تحضير التحميل...';
+                setTimeout(() => {
+                    // في التطبيق الحقيقي، سيتم هنا تنزيل الملف المحول
+                    alert('عذراً، هذا مجرد نموذج. في التطبيق الحقيقي، سيتم هنا تحويل الملف وتنزيله.');
+                    status.textContent = '';
+                }, 1000);
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
